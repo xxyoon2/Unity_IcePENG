@@ -2,44 +2,89 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum State
+{
+    NONE,
+    JUMP,
+    SLIDE,
+    DIE
+}
+
 public class PlayerMovement : MonoBehaviour
 {
     private PlayerInput _input;
     private Rigidbody2D _rigidbody;
+    private Animator _animator;
     
-    public float JumpForce = 700f; // 점프 속도 필요하려나?
+    public float MoveSpeed = 2f;
+    public float JumpForce = 700f;
+
+    private static readonly float MIN_NORMAL_Y = Mathf.Sin(20f * Mathf.Deg2Rad);
 
     void Awake()
     {
         _input = GetComponent<PlayerInput>();
         _rigidbody = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
     }
 
     void Update()
     {
         if (_input.IsPlayerJump)
         {
-            Debug.Log("점프!!");
             Jump();
+        }
+
+        if (_input.X != 0f)
+        {
+            _animator.SetBool("isWalking", true);
+            Move();
+        }
+        else
+        {
+            _animator.SetBool("isWalking", false);
         }
     }
 
-    private void Jump()
+    private void Move()
     {
-        // 점프
-        //_rigidbody.velocity = Vector2.zero;
-        _rigidbody.AddForce(new Vector2(0f, JumpForce);
+        if (_input.X == 0)
+        {
+            return;
+        }
 
+        if (_input.X > 0)
+        {
+            transform.localScale = new Vector2(1f, 1f);
+        }
+        
+        if (_input.X < 0)
+        {
+            transform.localScale = new Vector2(-1f, 1f);
+        }
+
+        _rigidbody.AddForce(Vector2.right * new Vector2(MoveSpeed * _input.X, 0f), ForceMode2D.Impulse);
     }
 
-    /*
-        처리해야할 것
-        1. 플레이어가 플랫폼을 밟고 있는지
-        2. 플레이어가 점프시 착지하는 위치
-            2_1. 플랫폼 위
-            2_2. 플랫폼 모서리
-            2_3. 플랫폼 옆
-            2_4. 구덩이
-            2_5. 장애물
-    */
+
+    private void Jump()
+    {
+        if (_animator.GetBool("isJumping"))
+        {
+            return;
+        }
+
+        // 점프
+        _rigidbody.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
+        _animator.SetBool("isJumping",true);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        ContactPoint2D point = collision.GetContact(0);
+        if (point.normal.y >= MIN_NORMAL_Y)
+        {
+            _animator.SetBool("isJumping", false);
+        }
+    }
 }
