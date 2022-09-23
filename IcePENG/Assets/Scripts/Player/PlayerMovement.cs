@@ -8,10 +8,10 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private Animator _animator;
     
-    public float MoveSpeed = 2f;
-    public float JumpForce = 700f;
+    public float MoveSpeed = 0.02f;
+    public float JumpForce = 5f;
 
-    private static readonly float MIN_NORMAL_Y = Mathf.Sin(20f * Mathf.Deg2Rad);
+    private static readonly float MIN_NORMAL_Y = Mathf.Sin(80f * Mathf.Deg2Rad);
 
     void Awake()
     {
@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    // 이동
     private void Move()
     {
         if (_input.X == 0)
@@ -45,20 +46,22 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
+        // 스프라이트 방향 전환
         if (_input.X > 0)
         {
             transform.localScale = new Vector2(1f, 1f);
         }
-        
+
         if (_input.X < 0)
         {
             transform.localScale = new Vector2(-1f, 1f);
         }
 
-        _rigidbody.AddForce(Vector2.right * new Vector2(MoveSpeed * _input.X, 0f), ForceMode2D.Impulse);
+        _rigidbody.AddForce(new Vector2(MoveSpeed * _input.X, 0f), ForceMode2D.Impulse);
     }
 
 
+    // 점프
     private void Jump()
     {
         if (_animator.GetBool("isJumping"))
@@ -70,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
         _animator.SetBool("isJumping",true);
     }
 
+    // 플레이어 사망 - 이부분은 추가적으로 수정할 필요가 있음
     private void Die() 
     {
         _animator.SetTrigger("falling");
@@ -78,13 +82,16 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
+    // 충돌 처리
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Dead")
+        // 사망 처리
+        if (collision.gameObject.CompareTag("Dead"))
         {
             Die();
         }
 
+        // 점프 체크
         ContactPoint2D point = collision.GetContact(0);
         if (point.normal.y >= MIN_NORMAL_Y)
         {
