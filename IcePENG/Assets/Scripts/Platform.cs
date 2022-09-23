@@ -8,11 +8,6 @@ public class Platform : MonoBehaviour
     private float _dropCooltime = 3f; // 몇 초가 지나면 추락하는가?
     private Vector2 _currentPos;
 
-    private void Start()
-    {
-        _currentPos = transform.position;
-    }
-
     // 충돌한 대상이 플레이어일 시 추락 카운트다운 시작
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -31,13 +26,13 @@ public class Platform : MonoBehaviour
         while(elapsedTime <= _dropCooltime)
         {
             elapsedTime += 0.05f;
-            isPlatformShaked = !isPlatformShaked;
+            //isPlatformShaked = !isPlatformShaked;
             // 플랫폼 흔들리는 모션
             yield return new WaitForSeconds(0.025f);
-            _currentPos.x -= 0.1f;
+            //_currentPos.x -= 0.1f;
             yield return new WaitForSeconds(0.025f);
-            _currentPos.x += 0.1f;
-            transform.position = _currentPos;
+            //_currentPos.x += 0.1f;
+            //transform.position = _currentPos;
         }
         StartCoroutine(UpdateDropPos());
         yield return null;
@@ -49,6 +44,7 @@ public class Platform : MonoBehaviour
         float dropEndYPos = _currentPos.y - 10f;
         while(_currentPos.y >= dropEndYPos)
         {
+            _currentPos = transform.position;
             _currentPos.y--;
             gameObject.transform.position = _currentPos;
             yield return new WaitForSeconds(0.05f);
