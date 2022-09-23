@@ -12,5 +12,4 @@ public class ScrollingObjects : MonoBehaviour
         transform.Translate(-1 * MoveSpeed * Time.deltaTime, 0f, 0f);
 
     }
-
 }

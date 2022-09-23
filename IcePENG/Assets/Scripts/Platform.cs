@@ -6,11 +6,11 @@ public class Platform : MonoBehaviour
 {
     [SerializeField]
     private float _dropCooltime = 3f; // 몇 초가 지나면 추락하는가?
-    private Vector2 currentPos;
+    private Vector2 _currentPos;
 
     private void Start()
     {
-        currentPos = transform.position;
+        _currentPos = transform.position;
     }
 
     // 충돌한 대상이 플레이어일 시 추락 카운트다운 시작
@@ -33,17 +33,11 @@ public class Platform : MonoBehaviour
             elapsedTime += 0.05f;
             isPlatformShaked = !isPlatformShaked;
             // 플랫폼 흔들리는 모션
-            if(isPlatformShaked)
-            {
-                currentPos.x -= 0.1f;
-            }
-            else
-            {
-                currentPos.x += 0.1f;
-            }
-            transform.position = currentPos;
-
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.025f);
+            _currentPos.x -= 0.1f;
+            yield return new WaitForSeconds(0.025f);
+            _currentPos.x += 0.1f;
+            transform.position = _currentPos;
         }
         StartCoroutine(UpdateDropPos());
         yield return null;
@@ -52,11 +46,11 @@ public class Platform : MonoBehaviour
     // 플랫폼 추락
     IEnumerator UpdateDropPos()
     {
-        float dropEndYPos = currentPos.y - 10f;
-        while(currentPos.y >= dropEndYPos)
+        float dropEndYPos = _currentPos.y - 10f;
+        while(_currentPos.y >= dropEndYPos)
         {
-            currentPos.y--;
-            gameObject.transform.position = currentPos;
+            _currentPos.y--;
+            gameObject.transform.position = _currentPos;
             yield return new WaitForSeconds(0.05f);
         }
         gameObject.SetActive(false);
