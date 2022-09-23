@@ -2,14 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum State
-{
-    NONE,
-    JUMP,
-    SLIDE,
-    DIE
-}
-
 public class PlayerMovement : MonoBehaviour
 {
     private PlayerInput _input;
@@ -74,13 +66,25 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        // 점프
         _rigidbody.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
         _animator.SetBool("isJumping",true);
     }
 
+    private void Die() 
+    {
+        _animator.SetTrigger("falling");
+        _rigidbody.velocity = Vector2.zero;
+        this.gameObject.layer = 11;
+        
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.tag == "Dead")
+        {
+            Die();
+        }
+
         ContactPoint2D point = collision.GetContact(0);
         if (point.normal.y >= MIN_NORMAL_Y)
         {
