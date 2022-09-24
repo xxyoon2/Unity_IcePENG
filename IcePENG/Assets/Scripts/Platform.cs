@@ -20,7 +20,6 @@ public class Platform : MonoBehaviour
     // 추락 대기시간 동안 카운트 후 플랫폼 추락 코루틴 실행
     IEnumerator ActionBeforeDrop()
     {
-        bool    isPlatformShaked = false;
         float   elapsedTime = 0f;
 
         while(elapsedTime <= _dropCooltime)

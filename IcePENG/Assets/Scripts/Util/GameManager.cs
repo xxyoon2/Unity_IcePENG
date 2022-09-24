@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class GameManager : SingletoBehavior<GameManeger>
+public class GameManager : SingletonBehavior<GameManager>
 {
     // life system
     // game key
