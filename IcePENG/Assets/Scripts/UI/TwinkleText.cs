@@ -18,7 +18,7 @@ public class TwinkleText : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Return))
         {
-            SceneManager.LoadScene("LevelDesign_stage1");
+            SceneManager.LoadScene("Play");
         }
         _elapsedTime += Time.deltaTime;
         if(_elapsedTime >= 0.5f)

@@ -14,15 +14,38 @@ public class GameManager : SingletonBehavior<GameManager>
 #endregion
 
 #region Score
-    public UnityEvent UpdateScore = new UnityEvent();
+    public UnityEvent<int> UpdateScore = new UnityEvent<int>();
     
     public int CurrentScore = 0;
     public int BestScore = -100;
+
+    void Start()
+    {
+        StartCoroutine("ScoreCounter");
+    }
+
+    IEnumerator ScoreCounter()
+    {
+        CurrentScore = 0;
+
+        while (true)
+        {
+            yield return new WaitForSeconds(10f);
+            CurrentScore += 100;
+            UpdateScore.Invoke(CurrentScore);
+        }
+    }
+
+
 #endregion
 
+/*
     public void GameStart()
     {
         // 게임 키 설명 UI 지우고
         // 게임 플렛폼 움직이도록
     }
+*/
+
+    
 }
