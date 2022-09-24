@@ -62,15 +62,5 @@ public class GameManager : SingletonBehavior<GameManager>
         }
     }
 
-#endregion
-
-/*
-    public void GameStart()
-    {
-        // 게임 키 설명 UI 지우고
-        // 게임 플렛폼 움직이도록
-    }
-*/
-
-    
+#endregion   
 }
