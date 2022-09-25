@@ -11,7 +11,7 @@ public class Platform : MonoBehaviour
     // 충돌한 대상이 플레이어일 시 추락 카운트다운 시작
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Player") && GameManager.Instance.IsPlayerStartGame)
+        if(collision.gameObject.CompareTag("Player") && GameManager.Instance.IsPlayerStartGame && collision.contacts[0].normal.y < 0.7f)
         {
             StartCoroutine("ActionBeforeDrop");
         }
