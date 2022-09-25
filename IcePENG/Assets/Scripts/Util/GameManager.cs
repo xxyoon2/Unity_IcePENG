@@ -13,7 +13,6 @@ public class GameManager : SingletonBehavior<GameManager>
     void Start()
     {
         BestScore = PlayerPrefs.GetInt("IcePeng_BestScore", 0);
-        //PlayGame(); // 임시
     }
 
 #region StartGame
