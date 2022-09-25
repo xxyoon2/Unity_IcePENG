@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : SingletonBehavior<GameManager>
 {
@@ -53,7 +54,7 @@ public class GameManager : SingletonBehavior<GameManager>
 #endregion
 
 #region EndGame
-    private void EndGame()// + 함수 이름 수정하셔도 됨
+    public void EndGame()// + 함수 이름 수정하셔도 됨
     {
         StopCoroutine("ScoreCounter");
         if (CurrentScore > BestScore)
@@ -61,6 +62,7 @@ public class GameManager : SingletonBehavior<GameManager>
             BestScore = CurrentScore;
             PlayerPrefs.SetInt("IcePeng_BestScore", BestScore);
         }
+        SceneManager.LoadScene("GameOverScene");
     }
 
 #endregion   
