@@ -13,24 +13,26 @@ public class GameManager : SingletonBehavior<GameManager>
     void Start()
     {
         BestScore = PlayerPrefs.GetInt("IcePeng_BestScore", 0);
-        PlayGame(); // 임시
+        //PlayGame(); // 임시
     }
 
 #region StartGame
     // 플레이어가 깃발 지나갔을 때
     public UnityEvent<bool> GameStart = new UnityEvent<bool>();
+    public bool IsPlayerStartGame = false;
 
-    private void PlayGame() // + 함수 이름 수정하셔도 됨
+    public void PlayGame(bool shouldObjectsScroll) // + 함수 이름 수정하셔도 됨
     {
         // + 플렛폼 움직이는 컴포넌트를 활성화 시키던가 혹은 플랫폼 movespeed를 0에서 6.5로 올리던가하면 될듯
         // 키 설명하는 Text 없애야함
+        GameStart.Invoke(shouldObjectsScroll);
+        IsPlayerStartGame = shouldObjectsScroll;
         StartCoroutine("ScoreCounter");
     }
 #endregion
 
 #region Score
     public UnityEvent<int> UpdateScore = new UnityEvent<int>();
-    
     public int CurrentScore = 0;
     
 
