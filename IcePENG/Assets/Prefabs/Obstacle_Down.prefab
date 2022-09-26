@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6024088558862520693}
   - component: {fileID: 6024088558862520698}
   - component: {fileID: 1765234420035308104}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Obstacle_Down
-  m_TagString: Dead
+  m_TagString: Hit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
