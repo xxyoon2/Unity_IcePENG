@@ -27,7 +27,7 @@ public class PlatformTest : MonoBehaviour
     {
         for(int i = 0; i < _coinCount; i++)
         {
-            if(0 == Random.Range(0, 2))
+            if(0 == Random.Range(0, 4))
             {
                 _coins[i].SetActive(true);
             }
