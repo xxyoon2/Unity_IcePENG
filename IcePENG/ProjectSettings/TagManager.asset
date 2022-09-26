@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Dead
+  - Start
+  - Goal
   layers:
   - Default
   - TransparentFX
@@ -14,10 +16,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - YouDead
   - DeathZone
   - NoEntryZone
-  - YouDead
+  - 
   - 
   - 
   - 

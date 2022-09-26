@@ -78,7 +78,8 @@ public class PlayerMovement : MonoBehaviour
     {
         _animator.SetTrigger("falling");
         _rigidbody.velocity = Vector2.zero;
-        this.gameObject.layer = 11;
+        this.gameObject.layer = 8;
+        GameManager.Instance.EndGame();
         
     }
 
