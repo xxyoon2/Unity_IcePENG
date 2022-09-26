@@ -78,24 +78,23 @@ public class PlayerMovement : MonoBehaviour
 
     private void Hit()
     {
-        _animator.SetTrigger("Hit");
+        _animator.SetTrigger("hit");
         StartCoroutine("GracePeriod");
     }
 
     IEnumerator GracePeriod()
     {
-        Debug.Log("우가");
         this.gameObject.layer = 9;
         
-        float elapseTime = 0f;
-        while (elapseTime <= _graceTime)
+        int elapseCount = 0;
+        while (elapseCount <= _graceTime)
         {
-            Debug.Log("깜");
+            transform.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f);
             yield return new WaitForSeconds(0.25f);
-            Debug.Log("빡");
+            transform.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 255);
             yield return new WaitForSeconds(0.25f);
 
-            elapseTime += Time.deltaTime;
+            ++elapseCount;
         }
 
         this.gameObject.layer = 0;
@@ -108,8 +107,8 @@ public class PlayerMovement : MonoBehaviour
         _animator.SetTrigger("dead");
         _rigidbody.velocity = Vector2.zero;
         this.gameObject.layer = 8;
+
         GameManager.Instance.EndGame();
-        
     }
 
     // 충돌 처리
