@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public float JumpForce = 5f;
 
     public int life = 3;
-    private int _graceTime = 2;
+    private int _graceTime = 4;
 
     private static readonly float MIN_NORMAL_Y = Mathf.Sin(80f * Mathf.Deg2Rad);
 
@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         this.gameObject.layer = 0;
-        yield return null;
+        yield break;
     }
 
     // 플레이어 사망
@@ -117,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
         // 사망 처리
         if (collision.gameObject.CompareTag("Hit"))
         {
-            --life;
+            GameManager.Instance.UpdateLife(--life);
             if (life <= 0)
             {
                 Die();
