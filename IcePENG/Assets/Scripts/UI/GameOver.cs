@@ -13,6 +13,7 @@ public class GameOver : MonoBehaviour
         _ui = GetComponent<TextMeshProUGUI>();
         _bestScore = GameManager.Instance.BestScore;
     }
+    
     private void Start()
     {
         _ui.text = $"Score:{_bestScore}";
