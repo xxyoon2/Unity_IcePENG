@@ -76,8 +76,25 @@ public class PlayerMovement : MonoBehaviour
         _animator.SetBool("isJumping",true);
     }
 
-    private void Hit()
+    public void Heal()
     {
+        if (life >= 5)
+        {
+            return;
+        }
+
+        GameManager.Instance.UpdateLife(++life);
+    }
+
+    public void Hit()
+    {
+        GameManager.Instance.UpdateLife(--life);
+        if (life <= 0)
+        {
+            Die();
+            return;
+        }
+
         _animator.SetTrigger("hit");
         StartCoroutine("GracePeriod");
     }
@@ -117,12 +134,6 @@ public class PlayerMovement : MonoBehaviour
         // 사망 처리
         if (collision.gameObject.CompareTag("Hit"))
         {
-            GameManager.Instance.UpdateLife(--life);
-            if (life <= 0)
-            {
-                Die();
-            }
-
             Hit();          
         }
 

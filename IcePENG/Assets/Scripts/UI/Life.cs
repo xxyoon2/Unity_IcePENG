@@ -47,24 +47,20 @@ public class Life : MonoBehaviour
             return;
         }
 
-        _image = Lifes[elapseLife].GetComponent<Image>();
-
         // 감소
         if (elapseLife < lifeCount)
         {
             // 하트 지우기
-            _image.sprite = EmptyLifeSprite; 
-
-            return;
+            _image = Lifes[elapseLife].GetComponent<Image>();
+            _image.sprite = EmptyLifeSprite;
         }
 
         // 증가
         if (elapseLife > lifeCount)
         {
             // 하트 채우기
+            _image = Lifes[lifeCount].GetComponent<Image>();
             _image.sprite = LifeSprite;
-
-            return;
         }
 
         lifeCount = elapseLife;
