@@ -9,7 +9,6 @@ public class EndFlag : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            GameManager.Instance.PlayGame(false);
             Invoke("GameClearSceneLoad", 0.3f);
         }
         else
