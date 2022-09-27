@@ -7,16 +7,18 @@ using TMPro;
 public class GameOver : MonoBehaviour
 {
     private TextMeshProUGUI _ui;
-    private int _bestScore;
+    private int _highScore;
+    private int _currentScore;
     void Awake()
     {
         _ui = GetComponent<TextMeshProUGUI>();
-        _bestScore = GameManager.Instance.BestScore;
+        _highScore = GameManager.Instance.BestScore;
+        _currentScore = GameManager.Instance.CurrentScore;
     }
     
     private void Start()
     {
-        _ui.text = $"Score:{_bestScore}";
+        _ui.text = $"Score:{_currentScore}\nHigh Score: {_highScore}";
     }
 
     private void Update()
