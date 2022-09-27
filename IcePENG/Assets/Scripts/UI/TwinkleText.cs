@@ -8,10 +8,14 @@ public class TwinkleText : MonoBehaviour
     private float _elapsedTime = 0f;
     private bool _isTextTurnoff = false;
     private TextMeshProUGUI _ui;
+    private AudioSource _audio;
 
     private void Start()
     {
         _ui = GetComponent<TextMeshProUGUI>();   
+        _audio = GetComponent<AudioSource>();
+
+        _audio.Play();
     }
     void Update()
     {
