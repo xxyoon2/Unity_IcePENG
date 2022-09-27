@@ -23,8 +23,8 @@ public class Platform : MonoBehaviour
 
     private void SetActiveRandomItems()
     {
-        int result = Random.Range(0, 5);
-        if (result == 4)
+        int result = Random.Range(0, 10);
+        if (result >= 4)
         {
             return;
         }
