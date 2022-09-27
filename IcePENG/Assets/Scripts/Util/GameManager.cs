@@ -6,10 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : SingletonBehavior<GameManager>
 {
+    private AudioSource _audio;
+
     public int BestScore;
     public int StageCount = 1;
     void Start()
     {
+        _audio = GetComponent<AudioSource>();
+
         BestScore = PlayerPrefs.GetInt("IcePeng_BestScore", 0);
     }
 
@@ -21,7 +25,22 @@ public class GameManager : SingletonBehavior<GameManager>
     {
         GameStart.Invoke(shouldObjectsScroll);
         IsPlayerStartGame = shouldObjectsScroll;
+        PlayerSlipOnIce(false);
         StartCoroutine("ScoreCounter");
+    }
+#endregion
+
+#region Audio
+    public void PlayerSlipOnIce(bool isPlayerJump)
+    {
+        if (isPlayerJump)
+        {
+            _audio.Stop();
+        }
+        else
+        {
+            _audio.Play();
+        }
     }
 #endregion
 

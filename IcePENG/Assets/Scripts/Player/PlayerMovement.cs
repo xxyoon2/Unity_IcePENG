@@ -94,6 +94,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         _rigidbody.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
+        GameManager.Instance.PlayerSlipOnIce(true);
         _audio.PlayOneShot(JumpSoundEffect);
         _animator.SetBool("isJumping",true);
     }
@@ -178,6 +179,7 @@ public class PlayerMovement : MonoBehaviour
         ContactPoint2D point = collision.GetContact(0);
         if (point.normal.y >= MIN_NORMAL_Y)
         {
+            GameManager.Instance.PlayerSlipOnIce(true);
             _animator.SetBool("isJumping", false);
         }
     }
