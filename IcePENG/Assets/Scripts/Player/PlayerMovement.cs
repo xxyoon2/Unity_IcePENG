@@ -11,6 +11,9 @@ public class PlayerMovement : MonoBehaviour
     public float MoveSpeed = 0.02f;
     public float JumpForce = 5f;
 
+    public int life = 3;
+    private int _graceTime = 4;
+
     private static readonly float MIN_NORMAL_Y = Mathf.Sin(80f * Mathf.Deg2Rad);
 
     void Awake()
@@ -73,20 +76,67 @@ public class PlayerMovement : MonoBehaviour
         _animator.SetBool("isJumping",true);
     }
 
-    // 플레이어 사망 - 이부분은 추가적으로 수정할 필요가 있음
+    public void Heal()
+    {
+        if (life >= 5)
+        {
+            return;
+        }
+
+        GameManager.Instance.UpdateLife(++life);
+    }
+
+    public void Hit()
+    {
+        GameManager.Instance.UpdateLife(--life);
+        if (life <= 0)
+        {
+            Die();
+            return;
+        }
+
+        _animator.SetTrigger("hit");
+        StartCoroutine("GracePeriod");
+    }
+
+    IEnumerator GracePeriod()
+    {
+        this.gameObject.layer = 9;
+        
+        int elapseCount = 0;
+        while (elapseCount <= _graceTime)
+        {
+            transform.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f);
+            yield return new WaitForSeconds(0.25f);
+            transform.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 255);
+            yield return new WaitForSeconds(0.25f);
+
+            ++elapseCount;
+        }
+
+        this.gameObject.layer = 0;
+        yield break;
+    }
+
+    // 플레이어 사망
     private void Die() 
     {
-        _animator.SetTrigger("falling");
+        _animator.SetTrigger("dead");
         _rigidbody.velocity = Vector2.zero;
         this.gameObject.layer = 8;
+
         GameManager.Instance.EndGame();
-        
     }
 
     // 충돌 처리
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // 사망 처리
+        if (collision.gameObject.CompareTag("Hit"))
+        {
+            Hit();          
+        }
+
         if (collision.gameObject.CompareTag("Dead"))
         {
             Die();

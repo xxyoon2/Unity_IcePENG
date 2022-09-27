@@ -6,9 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : SingletonBehavior<GameManager>
 {
-    // life system
-    // game key
-    // score system
     public int BestScore;
 
     void Start()
@@ -25,6 +22,15 @@ public class GameManager : SingletonBehavior<GameManager>
         GameStart.Invoke(shouldObjectsScroll);
         IsPlayerStartGame = shouldObjectsScroll;
         StartCoroutine("ScoreCounter");
+    }
+#endregion
+
+#region Life
+    public UnityEvent<int> LifeChange = new UnityEvent<int>();
+
+    public void UpdateLife(int life)
+    {
+        LifeChange.Invoke(life);
     }
 #endregion
 
