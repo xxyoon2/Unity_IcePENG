@@ -481,7 +481,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6495091043548510582, guid: a38fffe3dbed14ef4902f8801e3c2076, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6495091043548510583, guid: a38fffe3dbed14ef4902f8801e3c2076, type: 3}
       propertyPath: m_RootOrder
@@ -594,6 +594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BestScore: -100
+  StageCount: 1
   GameStart:
     m_PersistentCalls:
       m_Calls: []
