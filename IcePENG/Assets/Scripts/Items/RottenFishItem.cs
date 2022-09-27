@@ -6,10 +6,12 @@ public class RottenFishItem : MonoBehaviour
 {
     private AudioSource _audio;
     public AudioClip ItemSoundEffect;
+    private SpriteRenderer _sprite;
 
     void Start()
     {
         _audio = GetComponent<AudioSource>();
+        _sprite = GetComponent<SpriteRenderer>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -18,9 +20,8 @@ public class RottenFishItem : MonoBehaviour
         {
             return;
         }
-
+        _sprite.color = new Color(0, 0, 0, 0);
         _audio.PlayOneShot(ItemSoundEffect);
         other.transform.parent.gameObject.GetComponent<PlayerMovement>().Hit();
-        gameObject.SetActive(false);
     }
 }
