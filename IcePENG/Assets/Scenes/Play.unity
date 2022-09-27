@@ -160,7 +160,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4643032492525774430, guid: dbdfb8b8a67b2774592141f7bfbda71a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.84
+      value: -2.673
       objectReference: {fileID: 0}
     - target: {fileID: 4643032492525774430, guid: dbdfb8b8a67b2774592141f7bfbda71a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -274,7 +274,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &189276629
 PrefabInstance:
@@ -640,7 +640,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1262741048
 AudioSource:
@@ -781,7 +781,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4, y: 4}
+  m_Size: {x: 0.89, y: 4}
   m_EdgeRadius: 0
 --- !u!212 &1488749276
 SpriteRenderer:
@@ -847,8 +847,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 824698175}
+  m_RootOrder: 110
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1488749278
 MonoBehaviour:
@@ -967,7 +967,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6706451437124053628, guid: ff8f4995cc77ef04aac300159f07d0b1, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6706451437124053628, guid: ff8f4995cc77ef04aac300159f07d0b1, type: 3}
       propertyPath: m_AnchorMax.x
