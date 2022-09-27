@@ -20,11 +20,7 @@ public class EndFlag : MonoBehaviour
     
     private void GameClearSceneLoad()
     {
-        int currentStage = GameManager.Instance.StageCount;
-        if(currentStage == 2)
-        {
-            GameManager.Instance.StageCount++;
-        }       
+        GameManager.Instance.StageCount++;    
         SceneManager.LoadScene("GameClearScene");
         return;
     }
