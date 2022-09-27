@@ -8,33 +8,29 @@ public class PlatformTest : MonoBehaviour
     private float _dropCooltime = 3f; // 몇 초가 지나면 추락하는가?
     private Vector2 _currentPos;
 
-    private int _coinCount;
-    private GameObject[] _coins;
+    private GameObject[] _items;
 
     private void OnBecameVisible()
     {
         Debug.Log("게임 오브젝트가 카메라 시야 내에 들어옴");
-        _coinCount = transform.childCount - 1;
-        _coins = new GameObject[_coinCount];
-        for(int i = 0; i < _coinCount; i++)
+        _items = new GameObject[4];
+        for(int i = 0; i < 4; i++)
         {
-            _coins[i] = transform.GetChild(i).gameObject;
+            _items[i] = transform.GetChild(i).gameObject;
         }
-        SetActiveRandomCoins();
+        SetActiveRandomItems();
     }
 
-    private void SetActiveRandomCoins()
+    private void SetActiveRandomItems()
     {
-        for(int i = 0; i < _coinCount; i++)
+        int result = Random.Range(0, 5);
+        if (result == 4)
         {
-            if(0 == Random.Range(0, 4))
-            {
-                _coins[i].SetActive(true);
-            }
-            else
-            {
-                _coins[i].SetActive(false);
-            }
+            return;
+        }
+        else
+        {
+            _items[result].SetActive(true);
         }
     }
     // 충돌한 대상이 플레이어일 시 추락 카운트다운 시작
@@ -57,14 +53,14 @@ public class PlatformTest : MonoBehaviour
 
         while (elapsedTime <= _dropCooltime)
         {
+            _currentPos = transform.position;
             elapsedTime += 0.05f;
-            //isPlatformShaked = !isPlatformShaked;
             // 플랫폼 흔들리는 모션
             yield return new WaitForSeconds(0.025f);
-            //_currentPos.x -= 0.1f;
+            _currentPos.x -= 0.1f;
             yield return new WaitForSeconds(0.025f);
-            //_currentPos.x += 0.1f;
-            //transform.position = _currentPos;
+            _currentPos.x += 0.1f;
+            transform.position = _currentPos;
         }
         StartCoroutine(UpdateDropPos());
         yield return null;
