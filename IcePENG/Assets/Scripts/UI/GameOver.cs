@@ -6,14 +6,20 @@ using TMPro;
 
 public class GameOver : MonoBehaviour
 {
-    private TextMeshProUGUI _ui;
     private int _highScore;
     private int _currentScore;
+
+    private TextMeshProUGUI _ui;
+    private AudioSource _audio;
+
     void Awake()
     {
         _ui = GetComponent<TextMeshProUGUI>();
+        _audio = GetComponent<AudioSource>();
         _highScore = GameManager.Instance.BestScore;
         _currentScore = GameManager.Instance.CurrentScore;
+
+        _audio.Play();
     }
     
     private void Start()
