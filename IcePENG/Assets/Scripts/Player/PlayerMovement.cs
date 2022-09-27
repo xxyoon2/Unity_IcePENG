@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
 
     private static readonly float MIN_NORMAL_Y = Mathf.Sin(80f * Mathf.Deg2Rad);
 
+    public GameObject[] UpDown = new GameObject[2];
+
     void Awake()
     {
         _input = GetComponent<PlayerInput>();
@@ -28,6 +30,17 @@ public class PlayerMovement : MonoBehaviour
         if (_input.IsPlayerJump)
         {
             Jump();
+        }
+
+        if (_input.IsPlayerSlide)
+        {
+            Slide();
+        }
+        else
+        {
+            _animator.SetBool("isSlidding", false);
+            UpDown[0].SetActive(true);
+            UpDown[1].SetActive(false);
         }
 
         if (_input.X != 0f)
@@ -74,6 +87,14 @@ public class PlayerMovement : MonoBehaviour
 
         _rigidbody.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
         _animator.SetBool("isJumping",true);
+    }
+
+    // 슬라이드
+    private void Slide()
+    {
+        _animator.SetBool("isSlidding", true);
+        UpDown[0].SetActive(false);
+        UpDown[1].SetActive(true);
     }
 
     public void Heal()
