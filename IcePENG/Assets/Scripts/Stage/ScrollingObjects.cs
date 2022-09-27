@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ScrollingObjects : MonoBehaviour
 {
-    public float MoveSpeed = 15f; // 이동 속도
+    public float MoveSpeed = 6.5f; // 이동 속도
     private void Start()
     {
         GameManager.Instance.GameStart.AddListener(DetermineScroll);

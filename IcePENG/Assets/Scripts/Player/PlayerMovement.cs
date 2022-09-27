@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator _animator;
     
     public float MoveSpeed = 0.02f;
-    public float JumpForce = 5f;
+    public float JumpForce = 10f;
 
     public int life = 3;
     private int _graceTime = 4;
@@ -41,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
             _animator.SetBool("isSlidding", false);
             UpDown[0].SetActive(true);
             UpDown[1].SetActive(false);
+            JumpForce = 10f;
         }
 
         if (_input.X != 0f)
@@ -95,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
         _animator.SetBool("isSlidding", true);
         UpDown[0].SetActive(false);
         UpDown[1].SetActive(true);
+        JumpForce = 5f;
     }
 
     public void Heal()
