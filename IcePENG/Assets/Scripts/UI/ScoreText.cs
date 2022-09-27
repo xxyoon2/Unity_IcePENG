@@ -25,6 +25,5 @@ public class ScoreText : MonoBehaviour
     private void Start()
     {
         _ui.text = $"Score:{_currentScore}\nHigh Score: {_highScore}";
-        GameManager.Instance.StageCount = 1;
     }
 }

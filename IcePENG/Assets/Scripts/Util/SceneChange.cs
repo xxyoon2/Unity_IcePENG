@@ -7,7 +7,11 @@ public class SceneChange : MonoBehaviour
 {
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        if(GameManager.Instance.StageCount <= 3 && Input.GetKeyDown(KeyCode.Return))
+        {
+            SceneManager.LoadScene("StartScene");
+        }
+        else if (Input.GetKeyDown(KeyCode.Return))
         {
             SceneManager.LoadScene("StageInfo");
         }
