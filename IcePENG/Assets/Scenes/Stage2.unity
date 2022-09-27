@@ -42580,6 +42580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BestScore: 0
+  StageCount: 1
   GameStart:
     m_PersistentCalls:
       m_Calls: []
@@ -58130,6 +58131,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2166835178683032714, guid: 1c5a9912f31b6f14d93353df24fe4f49, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 2166835179111043877, guid: 1c5a9912f31b6f14d93353df24fe4f49, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -58142,5 +58147,7 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2166835178683032709, guid: 1c5a9912f31b6f14d93353df24fe4f49, type: 3}
+    - {fileID: 2166835178683032708, guid: 1c5a9912f31b6f14d93353df24fe4f49, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1c5a9912f31b6f14d93353df24fe4f49, type: 3}
