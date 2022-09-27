@@ -64,6 +64,7 @@ public class GameManager : SingletonBehavior<GameManager>
             BestScore = CurrentScore;
             PlayerPrefs.SetInt("IcePeng_BestScore", BestScore);
         }
+        IsPlayerStartGame = false;
         SceneManager.LoadScene("GameOverScene");
     }
 #endregion   
