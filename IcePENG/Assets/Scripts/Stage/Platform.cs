@@ -53,8 +53,8 @@ public class Platform : MonoBehaviour
 
         while (elapsedTime <= _dropCooltime)
         {
-            elapsedTime += 1f;
-            yield return new WaitForSeconds(1f);
+            elapsedTime += 0.5f;
+            yield return new WaitForSeconds(0.5f);
         }
         StartCoroutine(UpdateDropPos());
         yield return null;
@@ -67,7 +67,7 @@ public class Platform : MonoBehaviour
         while (_currentPos.y >= dropEndYPos)
         {
             _currentPos = transform.position;
-            _currentPos.y--;
+            _currentPos.y -= 0.5f;
             gameObject.transform.position = _currentPos;
             yield return new WaitForSeconds(0.05f);
         }
