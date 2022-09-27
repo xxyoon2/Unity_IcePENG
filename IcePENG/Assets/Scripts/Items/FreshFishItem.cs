@@ -10,8 +10,8 @@ public class FreshFishItem : MonoBehaviour
         {
             return;
         }
-
-        other.GetComponent<PlayerMovement>().Heal();
+        
+        other.transform.parent.gameObject.GetComponent<PlayerMovement>().Heal();
         gameObject.SetActive(false);
     }
 }

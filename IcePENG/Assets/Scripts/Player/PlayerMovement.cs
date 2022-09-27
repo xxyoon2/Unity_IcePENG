@@ -124,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator GracePeriod()
     {
-        this.gameObject.layer = 9;
+        this.gameObject.layer = UpDown[0].layer = UpDown[1].layer = 9;
         
         int elapseCount = 0;
         while (elapseCount <= _graceTime)
@@ -137,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
             ++elapseCount;
         }
 
-        this.gameObject.layer = 0;
+        this.gameObject.layer = UpDown[0].layer = UpDown[1].layer = 0;
         yield break;
     }
 

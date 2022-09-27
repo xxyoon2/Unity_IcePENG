@@ -10,8 +10,8 @@ public class RottenFishItem : MonoBehaviour
         {
             return;
         }
-        
-        other.GetComponent<PlayerMovement>().Hit();
+
+        other.transform.parent.gameObject.GetComponent<PlayerMovement>().Hit();
         gameObject.SetActive(false);
     }
 }
