@@ -9,7 +9,7 @@ public class SceneChange : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            SceneManager.LoadScene("Play");
+            SceneManager.LoadScene("StageInfo");
         }
     }
 }

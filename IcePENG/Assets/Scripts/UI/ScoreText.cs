@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class GameOver : MonoBehaviour
+public class ScoreText : MonoBehaviour
 {
     private int _highScore;
     private int _currentScore;
@@ -25,13 +25,6 @@ public class GameOver : MonoBehaviour
     private void Start()
     {
         _ui.text = $"Score:{_currentScore}\nHigh Score: {_highScore}";
-    }
-
-    private void Update()
-    {
-        if(Input.GetKey(KeyCode.Return))
-        {
-            SceneManager.LoadScene("StartScene");
-        }
+        GameManager.Instance.StageCount = 1;
     }
 }

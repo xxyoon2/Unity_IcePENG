@@ -10,6 +10,7 @@ public class EndFlag : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             Invoke("GameClearSceneLoad", 0.3f);
+            return;
         }
         else
         {
@@ -17,8 +18,14 @@ public class EndFlag : MonoBehaviour
         }
     }
     
-    void GameClearSceneLoad()
+    private void GameClearSceneLoad()
     {
+        int currentStage = GameManager.Instance.StageCount;
+        if(currentStage == 2)
+        {
+            GameManager.Instance.StageCount++;
+        }       
         SceneManager.LoadScene("GameClearScene");
+        return;
     }
 }
