@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private PlayerInput _input;
     private Rigidbody2D _rigidbody;
     private Animator _animator;
+    private AudioSource _audio;
     
     public float MoveSpeed = 0.02f;
     public float JumpForce = 10f;
@@ -18,11 +19,17 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject[] UpDown = new GameObject[2];
 
+    public AudioClip HitSoundEffect;
+    public AudioClip JumpSoundEffect;
+
     void Awake()
     {
         _input = GetComponent<PlayerInput>();
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _audio = GetComponent<AudioSource>();
+
+        _audio.Play();
     }
 
     void Update()
@@ -87,6 +94,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         _rigidbody.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
+        _audio.PlayOneShot(JumpSoundEffect);
         _animator.SetBool("isJumping",true);
     }
 
@@ -118,6 +126,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
+        _audio.PlayOneShot(HitSoundEffect);
         _animator.SetTrigger("hit");
         StartCoroutine("GracePeriod");
     }

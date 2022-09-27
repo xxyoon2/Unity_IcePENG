@@ -5,14 +5,21 @@ using UnityEngine;
 public class Platform : MonoBehaviour
 {
     [SerializeField]
-    private float _dropCooltime = 3f; // ¸î ÃÊ°¡ Áö³ª¸é Ãß¶ôÇÏ´Â°¡?
+    private float _dropCooltime = 3f; // ï¿½ï¿½ ï¿½Ê°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß¶ï¿½ï¿½Ï´Â°ï¿½?
     private Vector2 _currentPos;
 
     private GameObject[] _items;
 
+    private AudioSource _audio;
+    public AudioClip PlatFormDropSoundEffect;
+
+    void Awake()
+    {
+        _audio = GetComponent<AudioSource>();
+    }
+
     private void OnBecameVisible()
     {
-        Debug.Log("°ÔÀÓ ¿ÀºêÁ§Æ®°¡ Ä«¸Þ¶ó ½Ã¾ß ³»¿¡ µé¾î¿È");
         _items = new GameObject[3];
         for (int i = 0; i < 3; i++)
         {
@@ -33,7 +40,7 @@ public class Platform : MonoBehaviour
             _items[result].SetActive(true);
         }
     }
-    // Ãæµ¹ÇÑ ´ë»óÀÌ ÇÃ·¹ÀÌ¾îÀÏ ½Ã Ãß¶ô Ä«¿îÆ®´Ù¿î ½ÃÀÛ
+    // ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ß¶ï¿½ Ä«ï¿½ï¿½Æ®ï¿½Ù¿ï¿½ ï¿½ï¿½ï¿½ï¿½
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && GameManager.Instance.IsPlayerStartGame && collision.contacts[0].normal.y < 0.7f)
@@ -46,7 +53,7 @@ public class Platform : MonoBehaviour
         }
     }
 
-    // Ãß¶ô ´ë±â½Ã°£ µ¿¾È Ä«¿îÆ® ÈÄ ÇÃ·§Æû Ãß¶ô ÄÚ·çÆ¾ ½ÇÇà
+    // ï¿½ß¶ï¿½ ï¿½ï¿½ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½Æ® ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ß¶ï¿½ ï¿½Ú·ï¿½Æ¾ ï¿½ï¿½ï¿½ï¿½
     IEnumerator ActionBeforeDrop()
     {
         float elapsedTime = 0f;
@@ -60,10 +67,11 @@ public class Platform : MonoBehaviour
         yield return null;
     }
 
-    // ÇÃ·§Æû Ãß¶ô
+    // ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ß¶ï¿½
     IEnumerator UpdateDropPos()
     {
         float dropEndYPos = _currentPos.y - 10f;
+        _audio.PlayOneShot(PlatFormDropSoundEffect);
         while (_currentPos.y >= dropEndYPos)
         {
             _currentPos = transform.position;
@@ -75,10 +83,9 @@ public class Platform : MonoBehaviour
         yield break;
     }
 
-    // °¢°¢ÀÇ ÇÃ·§ÆûÀÌ °¡Áø Ãß¶ô ÄðÅ¸ÀÓ¿¡ ¸Â°Ô ´ë±â ÈÄ ¿ÀºêÁ§Æ® ºñÈ°¼ºÈ­
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß¶ï¿½ ï¿½ï¿½Å¸ï¿½Ó¿ï¿½ ï¿½Â°ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½È°ï¿½ï¿½È­
     private void OnBecameInvisible()
     {
-        Debug.Log("°ÔÀÓ ¿ÀºêÁ§Æ®°¡ Ä«¸Þ¶ó ½Ã¾ß ¹ÛÀ¸·Î ³ª°¨");
         Invoke("makeObjectsActiveFalse", _dropCooltime);
     }
 
