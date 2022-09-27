@@ -13,8 +13,8 @@ public class Platform : MonoBehaviour
     private void OnBecameVisible()
     {
         Debug.Log("게임 오브젝트가 카메라 시야 내에 들어옴");
-        _items = new GameObject[4];
-        for (int i = 0; i < 4; i++)
+        _items = new GameObject[3];
+        for (int i = 0; i < 3; i++)
         {
             _items[i] = transform.GetChild(i).gameObject;
         }
@@ -24,7 +24,7 @@ public class Platform : MonoBehaviour
     private void SetActiveRandomItems()
     {
         int result = Random.Range(0, 10);
-        if (result >= 4)
+        if (result >= 3)
         {
             return;
         }
@@ -75,13 +75,14 @@ public class Platform : MonoBehaviour
         yield break;
     }
 
+    // 각각의 플랫폼이 가진 추락 쿨타임에 맞게 대기 후 오브젝트 비활성화
     private void OnBecameInvisible()
     {
         Debug.Log("게임 오브젝트가 카메라 시야 밖으로 나감");
         Invoke("makeObjectsActiveFalse", _dropCooltime);
     }
 
-    void makeObjectsActiveFalse()
+    private void makeObjectsActiveFalse()
     {
         gameObject.SetActive(false);
     }
