@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : SingletonBehavior<GameManager>
 {
     public int BestScore;
-    public int StageCount;
+    public int StageCount = 1;
     void Start()
     {
         BestScore = PlayerPrefs.GetInt("IcePeng_BestScore", 0);
