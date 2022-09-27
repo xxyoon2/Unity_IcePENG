@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : SingletonBehavior<GameManager>
 {
     public int BestScore;
-
+    public int StageCount = 1;
     void Start()
     {
         BestScore = PlayerPrefs.GetInt("IcePeng_BestScore", 0);
@@ -65,6 +65,7 @@ public class GameManager : SingletonBehavior<GameManager>
             PlayerPrefs.SetInt("IcePeng_BestScore", BestScore);
         }
         IsPlayerStartGame = false;
+        StageCount = 1;
         SceneManager.LoadScene("GameOverScene");
     }
 #endregion   
