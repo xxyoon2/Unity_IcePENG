@@ -78,6 +78,11 @@ public class Platform : MonoBehaviour
     private void OnBecameInvisible()
     {
         Debug.Log("게임 오브젝트가 카메라 시야 밖으로 나감");
+        Invoke("makeObjectsActiveFalse", _dropCooltime);
+    }
+
+    void makeObjectsActiveFalse()
+    {
         gameObject.SetActive(false);
     }
 }
