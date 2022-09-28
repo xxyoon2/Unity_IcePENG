@@ -774,7 +774,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC774\uB3D9 : \uBC29\uD5A5\uD0A4\n\uC810\uD504 : \uC2A4\uD398\uC774\uC2A4\uBC14"
+  m_text: "\uC774\uB3D9 : \uBC29\uD5A5\uD0A4\n\uC810\uD504 : \uC2A4\uD398\uC774\uC2A4\uBC14\n\uC2AC\uB77C\uC774\uB4DC
+    : Ctrl"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e42e73f9897b644c0a06b05aec85cce7, type: 2}
   m_sharedMaterial: {fileID: 7608976801844872000, guid: e42e73f9897b644c0a06b05aec85cce7, type: 2}

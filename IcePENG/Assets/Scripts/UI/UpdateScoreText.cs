@@ -12,11 +12,11 @@ public class UpdateScoreText : MonoBehaviour
         GameManager.Instance.UpdateScore.RemoveListener(ChangeScore);
         GameManager.Instance.UpdateScore.AddListener(ChangeScore);
 
-        _ScoreUI.text = $"Score : {GameManager.Instance.BestScore}";
+        _ScoreUI.text = $"Score : {GameManager.Instance.CurrentScore}";
     }
 
-    public void ChangeScore(int bestScore)
+    public void ChangeScore(int currentScore)
     {
-        _ScoreUI.text = $"Score : {bestScore}";
+        _ScoreUI.text = $"Score : {currentScore}";
     }
 }

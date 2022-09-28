@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Dead
   - Hit
+  - Platform
   layers:
   - Default
   - TransparentFX
