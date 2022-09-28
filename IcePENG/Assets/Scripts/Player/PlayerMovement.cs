@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator _animator;
     private AudioSource _audio;
     
-    public float MoveSpeed = 0.02f;
+    public float MoveSpeed = 30f;
     public float JumpForce = 10f;
 
     public int life = 3;
