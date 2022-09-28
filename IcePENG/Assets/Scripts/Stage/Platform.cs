@@ -5,7 +5,7 @@ using UnityEngine;
 public class Platform : MonoBehaviour
 {
     [SerializeField]
-    private float _dropCooltime = 3f; // �� �ʰ� ������ �߶��ϴ°�?
+    private float _dropCooltime = 3f; // 플랫폼이 추락하는 시간
     private Vector2 _currentPos;
 
     private GameObject[] _items;
@@ -20,8 +20,8 @@ public class Platform : MonoBehaviour
 
     private void OnBecameVisible()
     {
-        _items = new GameObject[3];
-        for (int i = 0; i < 3; i++)
+        _items = new GameObject[4];
+        for (int i = 0; i < 4; i++)
         {
             _items[i] = transform.GetChild(i).gameObject;
         }
@@ -31,7 +31,7 @@ public class Platform : MonoBehaviour
     private void SetActiveRandomItems()
     {
         int result = Random.Range(0, 10);
-        if (result >= 3)
+        if (result >= 4)
         {
             return;
         }
@@ -40,7 +40,7 @@ public class Platform : MonoBehaviour
             _items[result].SetActive(true);
         }
     }
-    // �浹�� ����� �÷��̾��� �� �߶� ī��Ʈ�ٿ� ����
+    // 플레이어가 충돌했으며 게임 플레이중인 상태일 때 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && GameManager.Instance.IsPlayerStartGame && collision.contacts[0].normal.y < 0.7f)
@@ -53,7 +53,7 @@ public class Platform : MonoBehaviour
         }
     }
 
-    // �߶� ���ð� ���� ī��Ʈ �� �÷��� �߶� �ڷ�ƾ ����
+    // 추락 쿨타임 측정
     IEnumerator ActionBeforeDrop()
     {
         float elapsedTime = 0f;
@@ -67,7 +67,7 @@ public class Platform : MonoBehaviour
         yield return null;
     }
 
-    // �÷��� �߶�
+    // 플랫폼 추락
     IEnumerator UpdateDropPos()
     {
         float dropEndYPos = _currentPos.y - 10f;

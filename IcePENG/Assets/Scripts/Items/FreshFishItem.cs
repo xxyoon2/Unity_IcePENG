@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class FreshFishItem : MonoBehaviour
 {
-    private AudioSource _audio;
     public AudioClip ItemSoundEffect;
+    private AudioSource _audio;
     private SpriteRenderer _sprite;
+    private bool _isItemUsed = false;
 
     void Start()
     {
@@ -20,9 +21,16 @@ public class FreshFishItem : MonoBehaviour
         {
             return;
         }
-        
-        _audio.PlayOneShot(ItemSoundEffect);
-        _sprite.color = new Color(0, 0, 0, 0);
-        other.transform.parent.gameObject.GetComponent<PlayerMovement>().Heal();
+        if(_isItemUsed)
+        {
+            return;
+        }
+        else
+        {
+            _isItemUsed = true;
+            _audio.PlayOneShot(ItemSoundEffect);
+            _sprite.color = new Color(0, 0, 0, 0);
+            other.transform.parent.gameObject.GetComponent<PlayerMovement>().Heal();
+        }
     }
 }

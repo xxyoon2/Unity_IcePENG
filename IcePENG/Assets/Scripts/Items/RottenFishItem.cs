@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class RottenFishItem : MonoBehaviour
 {
-    private AudioSource _audio;
     public AudioClip ItemSoundEffect;
+    private AudioSource _audio;
     private SpriteRenderer _sprite;
+    private bool _isItemUsed = false;
 
     void Start()
     {
@@ -20,8 +21,16 @@ public class RottenFishItem : MonoBehaviour
         {
             return;
         }
-        _sprite.color = new Color(0, 0, 0, 0);
-        _audio.PlayOneShot(ItemSoundEffect);
-        other.transform.parent.gameObject.GetComponent<PlayerMovement>().Hit();
+        if(_isItemUsed)
+        {
+            return;
+        }
+        else
+        {
+            _isItemUsed = true;
+            _sprite.color = new Color(0, 0, 0, 0);
+            _audio.PlayOneShot(ItemSoundEffect);
+            other.transform.parent.gameObject.GetComponent<PlayerMovement>().Hit();
+        }
     }
 }

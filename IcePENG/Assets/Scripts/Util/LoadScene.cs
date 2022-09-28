@@ -22,7 +22,7 @@ public class LoadScene : MonoBehaviour
 
     void LoadStage1()
     {
-        SceneManager.LoadScene("Play");
+        SceneManager.LoadScene("Stage1");
         return;
     }
 

@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class CoinItem : MonoBehaviour
 {
-    private AudioSource _audio;
     public AudioClip ItemSoundEffect;
+    private AudioSource _audio;
     private SpriteRenderer _sprite;
+    private bool _isItemUsed = false;
     void Start()
     {
         _audio = GetComponent<AudioSource>();
@@ -17,10 +18,18 @@ public class CoinItem : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
-            GameManager.Instance.CurrentScore += 100;
-            _audio.PlayOneShot(ItemSoundEffect);
-            _sprite.color = new Color(0, 0, 0, 0);
-            Invoke("DisableObject", 2f);
+            if(_isItemUsed)
+            {
+                return;
+            }
+            else
+            {
+                _isItemUsed = true;
+                GameManager.Instance.CurrentScore += 100;
+                _audio.PlayOneShot(ItemSoundEffect);
+                _sprite.color = new Color(0, 0, 0, 0);
+                Invoke("DisableObject", 2f);
+            }
         }
     }
 

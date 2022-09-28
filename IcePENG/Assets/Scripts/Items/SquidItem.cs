@@ -7,6 +7,7 @@ public class SquidItem : MonoBehaviour
     private AudioSource _audio;
     public AudioClip ItemSoundEffect;
     private SpriteRenderer _sprite;
+    private bool _isItemUsed = false;
 
     void Start()
     {
@@ -18,18 +19,26 @@ public class SquidItem : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            _audio.PlayOneShot(ItemSoundEffect);
-            _sprite.color = new Color(0,0,0,0);
-            StartCoroutine(SquidEffect());
+            if(_isItemUsed)
+            {
+                return;
+            }
+            else
+            {
+                _isItemUsed = true;
+                _audio.PlayOneShot(ItemSoundEffect);
+                _sprite.color = new Color(0,0,0,0);
+                StartCoroutine(SquidEffect());
+            }
         }
 
         IEnumerator SquidEffect()
         {
             Time.timeScale = 1.5f;
-            yield return new WaitForSecondsRealtime(4f);
-            gameObject.SetActive(false);
+            yield return new WaitForSecondsRealtime(2.5f);
             Time.timeScale = 1;
-            yield break;
+            yield return new WaitForSeconds(1f);
+            gameObject.SetActive(false);
         }
     }
 }
