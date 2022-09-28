@@ -238,7 +238,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6706451436940112946}
   - component: {fileID: 6706451436940112951}
-  - component: {fileID: 6706451436940112944}
   - component: {fileID: 6706451436940112945}
   m_Layer: 5
   m_Name: ScoreText
@@ -275,19 +274,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6706451436940112947}
   m_CullTransparentMesh: 1
---- !u!114 &6706451436940112944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6706451436940112947}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbb5d78f7f04e4e96a6acbafd0313093, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _ScoreUI: {fileID: 6706451436940112945}
 --- !u!114 &6706451436940112945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,6 +375,7 @@ GameObject:
   - component: {fileID: 6706451437124053629}
   - component: {fileID: 6706451437124053630}
   - component: {fileID: 6706451437124053631}
+  - component: {fileID: 14244328}
   m_Layer: 5
   m_Name: InGameUI
   m_TagString: Untagged
@@ -480,6 +467,28 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &14244328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6706451437124053624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e829cdca5b8ca9c429fae560075046e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HowToPlayText: {fileID: 6706451438106929886}
+  LifeSprite: {fileID: -806989601, guid: 325d591062c146b4a901a3882daaf6cf, type: 3}
+  EmptyLifeSprite: {fileID: -830813206, guid: 325d591062c146b4a901a3882daaf6cf, type: 3}
+  Lifes:
+  - {fileID: 6706451437334955583}
+  - {fileID: 6706451437560548390}
+  - {fileID: 6706451436130806903}
+  - {fileID: 6706451436288085489}
+  - {fileID: 6706451436321820330}
+  ScoreText: {fileID: 6706451436940112945}
 --- !u!1 &6706451437334955583
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,7 +574,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6706451437543993856}
-  - component: {fileID: 6706451437543993863}
   m_Layer: 5
   m_Name: LifeBar
   m_TagString: Untagged
@@ -598,27 +606,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 1}
---- !u!114 &6706451437543993863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6706451437543993857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5df32dde03463e64c8fbb06cc5122ae7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LifeSprite: {fileID: -806989601, guid: 325d591062c146b4a901a3882daaf6cf, type: 3}
-  EmptyLifeSprite: {fileID: 888078167, guid: 325d591062c146b4a901a3882daaf6cf, type: 3}
-  LifeBar: {fileID: 6706451437543993857}
-  Lifes:
-  - {fileID: 6706451437334955583}
-  - {fileID: 6706451437560548390}
-  - {fileID: 6706451436130806903}
-  - {fileID: 6706451436288085489}
-  - {fileID: 6706451436321820330}
 --- !u!1 &6706451437560548390
 GameObject:
   m_ObjectHideFlags: 0
@@ -705,7 +692,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6706451438106929885}
   - component: {fileID: 6706451438106929875}
-  - component: {fileID: 6706451438106929874}
   - component: {fileID: 6706451438106929884}
   m_Layer: 5
   m_Name: HowToPlay
@@ -742,18 +728,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6706451438106929886}
   m_CullTransparentMesh: 1
---- !u!114 &6706451438106929874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6706451438106929886}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d79b5d52c2d0144aea2fc4aae1dd41d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6706451438106929884
 MonoBehaviour:
   m_ObjectHideFlags: 0
