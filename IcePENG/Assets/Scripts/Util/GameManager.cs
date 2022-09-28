@@ -79,13 +79,17 @@ public class GameManager : SingletonBehavior<GameManager>
     public void EndGame()
     {
         StopCoroutine("ScoreCounter");
+        
         if (CurrentScore > BestScore)
         {
             BestScore = CurrentScore;
             PlayerPrefs.SetInt("IcePeng_BestScore", BestScore);
         }
+        
         IsPlayerStartGame = false;
         StageCount = 1;
+        CurrentScore = 0;
+        Time.Timescale = 1f;
         SceneManager.LoadScene("GameOverScene");
     }
 #endregion   
