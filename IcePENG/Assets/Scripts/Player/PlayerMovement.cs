@@ -34,6 +34,14 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+        // 플레이어가 화면 밖으로 나가지 못하게 막는 코드
+        if (pos.x < 0f) pos.x = 0f;
+        if (pos.y < 0f) pos.y = 0f;
+        if (pos.x > 1f) pos.x = 1f;
+        if (pos.y > 1f) pos.y = 1f;
+        transform.position = Camera.main.ViewportToWorldPoint(pos);
+
         if (_input.IsPlayerJump)
         {
             Jump();
