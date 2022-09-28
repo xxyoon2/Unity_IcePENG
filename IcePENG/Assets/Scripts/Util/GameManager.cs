@@ -89,7 +89,7 @@ public class GameManager : SingletonBehavior<GameManager>
         IsPlayerStartGame = false;
         StageCount = 1;
         CurrentScore = 0;
-        Time.Timescale = 1f;
+        Time.timeScale = 1f;
         SceneManager.LoadScene("GameOverScene");
     }
 #endregion   
