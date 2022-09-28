@@ -16,14 +16,14 @@ public class ScoreText : MonoBehaviour
     {
         _ui = GetComponent<TextMeshProUGUI>();
         _audio = GetComponent<AudioSource>();
-        _highScore = GameManager.Instance.BestScore;
-        _currentScore = GameManager.Instance.CurrentScore;
 
         _audio.Play();
     }
     
     private void Start()
     {
+        _highScore = GameManager.Instance.BestScore;
+        _currentScore = GameManager.Instance.CurrentScore;
         _ui.text = $"Score:{_currentScore}\nHigh Score: {_highScore}";
     }
 }

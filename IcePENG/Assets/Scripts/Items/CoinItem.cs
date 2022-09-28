@@ -26,6 +26,7 @@ public class CoinItem : MonoBehaviour
             {
                 _isItemUsed = true;
                 GameManager.Instance.CurrentScore += 100;
+                GameManager.Instance.UpdateScore.Invoke(GameManager.Instance.CurrentScore);
                 _audio.PlayOneShot(ItemSoundEffect);
                 _sprite.color = new Color(0, 0, 0, 0);
                 Invoke("DisableObject", 2f);
