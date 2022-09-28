@@ -28,17 +28,8 @@ public class SquidItem : MonoBehaviour
                 _isItemUsed = true;
                 _audio.PlayOneShot(ItemSoundEffect);
                 _sprite.color = new Color(0,0,0,0);
-                StartCoroutine(SquidEffect());
+                GameManager.Instance.MakeTimescaleFaster();
             }
-        }
-
-        IEnumerator SquidEffect()
-        {
-            Time.timeScale = 1.5f;
-            yield return new WaitForSecondsRealtime(2.5f);
-            Time.timeScale = 1;
-            yield return new WaitForSeconds(1f);
-            gameObject.SetActive(false);
         }
     }
 }

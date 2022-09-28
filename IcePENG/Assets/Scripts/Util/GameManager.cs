@@ -18,6 +18,17 @@ public class GameManager : SingletonBehavior<GameManager>
         BestScore = PlayerPrefs.GetInt("IcePeng_BestScore", 0);
     }
 
+    public void MakeTimescaleFaster()
+    {
+        Time.timeScale = 1.5f;
+        Invoke("fixTimescale", 3f);
+    }
+
+    private void fixTimescale()
+    {
+        Time.timeScale = 1f;
+    }
+
 #region StartGame
     public UnityEvent<bool> GameStart = new UnityEvent<bool>();
     public bool IsPlayerStartGame = false;
