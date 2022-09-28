@@ -135,6 +135,14 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4643032492525774424, guid: dbdfb8b8a67b2774592141f7bfbda71a, type: 3}
+      propertyPath: JumpForce
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4643032492525774424, guid: dbdfb8b8a67b2774592141f7bfbda71a, type: 3}
+      propertyPath: MoveSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4643032492525774424, guid: dbdfb8b8a67b2774592141f7bfbda71a, type: 3}
       propertyPath: HitSoundEffect
       value: 
       objectReference: {fileID: 8300000, guid: 2afb8f01d08e46d4391849aa84a6f0b9, type: 3}

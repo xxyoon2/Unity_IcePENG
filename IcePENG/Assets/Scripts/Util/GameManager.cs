@@ -10,6 +10,7 @@ public class GameManager : SingletonBehavior<GameManager>
 
     public int BestScore;
     public int StageCount = 1;
+
     void Start()
     {
         _audio = GetComponent<AudioSource>();
@@ -31,15 +32,17 @@ public class GameManager : SingletonBehavior<GameManager>
 #endregion
 
 #region Audio
-    public void PlayerSlipOnIce(bool isPlayerJump)
+    public void PlayerSlipOnIce(bool isPlayerOnIce)
     {
-        if (isPlayerJump)
+        if (!isPlayerOnIce)
         {
             _audio.Stop();
+            return;
         }
         else
         {
             _audio.Play();
+            return;
         }
     }
 #endregion
@@ -60,16 +63,14 @@ public class GameManager : SingletonBehavior<GameManager>
     IEnumerator ScoreCounter()
     {
         CurrentScore = 0;
-        UpdateScore.Invoke(BestScore);
+        UpdateScore.Invoke(CurrentScore);
 
         while (true)
         {
             yield return new WaitForSeconds(10f);
+
             CurrentScore += 100;
-            if (CurrentScore > BestScore)
-            {
-                UpdateScore.Invoke(CurrentScore);
-            }
+            UpdateScore.Invoke(CurrentScore);
         }
     }
 #endregion

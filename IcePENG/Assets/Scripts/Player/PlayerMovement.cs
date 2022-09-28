@@ -81,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale = new Vector2(-1f, 1f);
         }
 
-        _rigidbody.AddForce(new Vector2(MoveSpeed * _input.X, 0f), ForceMode2D.Impulse);
+        _rigidbody.AddForce(new Vector2(MoveSpeed * _input.X * Time.deltaTime, 0f), ForceMode2D.Impulse);
     }
 
 
@@ -93,10 +93,11 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        _rigidbody.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
-        GameManager.Instance.PlayerSlipOnIce(true);
-        _audio.PlayOneShot(JumpSoundEffect);
         _animator.SetBool("isJumping",true);
+        _audio.PlayOneShot(JumpSoundEffect);
+
+        _rigidbody.AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
+        //GameManager.Instance.PlayerSlipOnIce(false);
     }
 
     // 슬라이드
@@ -179,8 +180,9 @@ public class PlayerMovement : MonoBehaviour
         ContactPoint2D point = collision.GetContact(0);
         if (point.normal.y >= MIN_NORMAL_Y)
         {
-            GameManager.Instance.PlayerSlipOnIce(true);
+            //GameManager.Instance.PlayerSlipOnIce(true);
             _animator.SetBool("isJumping", false);
         }
+        
     }
 }
